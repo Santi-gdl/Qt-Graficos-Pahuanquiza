@@ -15,15 +15,28 @@ public:
     Principal(QWidget *parent = nullptr);
     ~Principal();
 
+protected:
+    void paintEvent(QPaintEvent *event) override;
+
 private slots:
     void on_actionGuardar_triggered();
 
     void on_pushButton_clicked(bool checked);
+
+    void on_inNota1_valueChanged(int arg1);
+
+    void on_inNota2_valueChanged(int arg1);
+
+    void on_inNota3_valueChanged(int arg1);
 
 private:
     Ui::Principal *ui;
     QPixmap lienzo;
 
     void dibujar();
+    int getAlto (int valor);
+    int incY(int alto);
+
+    //string promedio();
 };
 #endif // PRINCIPAL_H
