@@ -1,10 +1,6 @@
 #include "principal.h"
 #include "ui_principal.h"
 
-#include <QPainter>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QMainWindow>
 
 Principal::Principal(QWidget *parent)
     : QMainWindow(parent)
@@ -95,13 +91,16 @@ void Principal::dibujar()
     int altoN3 = this->getAlto(nota3);
     int incYN3 = this->incY(altoN3);
 
-/*
-    //OPCIONAL-YO
-    string str = "Promedio" + promedio();
-    ui->lineEdit->setText(str);
-*/
+
+
+
+
     //Dibujar tercera barra
     painter.drawRect(x+290,y+50+incYN3,100,altoN3);
+
+    string str = promedio();
+    QString qstr = QString::fromStdString(str);
+    ui->lineEdit->setText(qstr);
 
 }
 
@@ -115,14 +114,17 @@ int Principal::incY(int alto)
     return 400-alto;
 }
 
-/*
 string Principal::promedio()
 {
     int nota1= ui->inNota1->value();
     int nota2= ui->inNota2->value();
     int nota3= ui->inNota3->value();
+
+    int promedio;
+    promedio= (nota1+nota2+nota3) /3;
+    string final="Promedio: " + to_string(promedio);
+    return final;
 }
-*/
 
 void Principal::on_actionGuardar_triggered()
 {
@@ -152,6 +154,14 @@ void Principal::on_inNota2_valueChanged(int arg1)
 }
 
 void Principal::on_inNota3_valueChanged(int arg1)
-{
+{    string str = promedio();
+     QString qstr = QString::fromStdString(str);
+     ui->lineEdit->setText(qstr);
     dibujar();
 }
+
+void Principal::on_lineEdit_textEdited(const QString &arg1)
+{
+
+}
+

@@ -2,6 +2,13 @@
 #define PRINCIPAL_H
 
 #include <QMainWindow>
+#include <QPainter>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QMainWindow>
+#include <string>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
@@ -29,6 +36,8 @@ private slots:
 
     void on_inNota3_valueChanged(int arg1);
 
+    void on_lineEdit_textEdited(const QString &arg1);
+
 private:
     Ui::Principal *ui;
     QPixmap lienzo;
@@ -37,6 +46,6 @@ private:
     int getAlto (int valor);
     int incY(int alto);
 
-    //string promedio();
+    string promedio();
 };
 #endif // PRINCIPAL_H
